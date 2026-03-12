@@ -30,11 +30,11 @@ function S = srht_sketch(n, k)
 
     % Next power of 2 for Hadamard
     m = 2^nextpow2(n);
-    % Random ±1 signs (Rademacher)
+    % Random ±1 signs
     d = sign(randn(m,1));
     % Random sampling indices
     idx = randperm(m, k);
-    % Scaling factor for JL normalization
+    % Scaling factor 
     scale = sqrt(m/k);
     % Sketch operator as a function handle
     S = @(x) scale * fwht_apply(d, idx, x, n, m);
