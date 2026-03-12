@@ -1,13 +1,16 @@
-function [x] = fwht(k, x)
-
-if k == 0
-    return;
-end
-
-k1 = 2^(k-1);
-p1 = fwht(k-1, x(1:k1));
-p2 = fwht(k-1, x(k1+1:end));
-
-x = [ p1 + p2 ; p1 - p2 ];
-
-end
+function y = fwht(x)
+    n = length(x);
+    h = 1;
+    while h < n
+        for i = 1:2*h:n
+            for j = i:i+h-1
+                a = x(j);
+                b = x(j+h);
+                x(j) = a + b;
+                x(j+h) = a - b;
+            endfor
+        endfor
+        h = 2*h;
+    endwhile
+    y = x / sqrt(n);
+endfunction

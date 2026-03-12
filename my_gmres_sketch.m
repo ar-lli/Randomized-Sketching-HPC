@@ -19,6 +19,12 @@ end
 SAV = zeros(length(Sb), 0);
 
 for j = 1 : maxit
+
+    % # Debug print
+    % if j == round(maxit/2)
+    %     printf("This is half the sGMRES execution, iteration n° %d\n", j);
+    % endif
+
     w = A(V(:,j));
     SAV(:,j) = S(w);
 

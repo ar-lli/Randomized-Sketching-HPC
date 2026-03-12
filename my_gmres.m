@@ -21,7 +21,11 @@ for j = 1 : maxit
     % Solve the least squares problems
     y = H \ (eye(j+1, 1) * nrmb);
 
-    res(j) = norm(H * y - eye(j+1, 1) * nrmb) / nrmb;
+    % Relative Residual computed in the Krylow space
+    % res(j) = norm(H * y - eye(j+1, 1) * nrmb) / nrmb;
+
+    % Relative residual of the "real" solution
+    res(j) = norm(A(V(:,1:j)*y) - b) / nrmb; 
 
     if res(j) < tol
         break; % Exit if the residual is below the tolerance
